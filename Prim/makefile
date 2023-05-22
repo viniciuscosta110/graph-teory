@@ -9,7 +9,7 @@ $(TARGET): $(SRC)
 
 .PHONY: clean
 clean:
-	del /Q *.o *.d prim.exe
+	rm /Q *.o *.d prim.bin
 
 %:
 	@:
