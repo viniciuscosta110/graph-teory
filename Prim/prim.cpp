@@ -99,6 +99,7 @@ int main(int argc, char *argv[]) {
     }
 
     int mst_weight = 0;
+
     if(s > 0 && s <= V) {
         mst_weight = G.primMST(s - 1);
     } else {
@@ -107,7 +108,6 @@ int main(int argc, char *argv[]) {
 
     if(print_tree_flag){
         G.print_tree();
-        cout << "Minimum spanning tree weight: " << mst_weight << endl;
     }
 
     if(fout.is_open()){
@@ -121,5 +121,5 @@ int main(int argc, char *argv[]) {
         fin.close();
     }
 
-    return 0;
+    return mst_weight;
 }

@@ -1,7 +1,7 @@
 CC = g++
 CFLAGS = -std=c++11 -Wall
 
-TARGET = prim
+TARGET = prim.bin
 SRC = prim.cpp
 
 $(TARGET): $(SRC)
