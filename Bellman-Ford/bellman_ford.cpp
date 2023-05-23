@@ -31,6 +31,14 @@ class Graph {
             distance[initial_vertex] = 0;
 
             for (int i = 0; i < V-1; i++) {
+                if(i == initial_vertex) {
+                    path[i] = initial_vertex;
+                    continue;
+                }
+                path[i] = -2;
+            }
+
+            for (int i = 0; i < V-1; i++) {
                 bool changed = false;
                 for (int u = 0; u < V; u++) {
                     for (PairInt node : adjacentList[u]) {
@@ -43,8 +51,6 @@ class Graph {
                             changed = true;
                         }
                     }
-
-                    if (!changed) break;
                 }
 
                 if (!changed) break;
@@ -67,10 +73,21 @@ class Graph {
         void printBestPath() {
             cout << "Best path: ";
             for (int i = 0; i < V; i++) {
-                cout << path[i]+1 << " ";
+                cout << i+1 << ": " << path[i]+1 << "\n";
             }
 
             cout << endl << endl;
+        }
+
+        void printGraph() {
+            cout << "Graph: " << endl;
+            for (int i = 0; i < V; i++) {
+                cout << i+1 << ": ";
+                for (PairInt node : adjacentList[i]) {
+                    cout << node.first+1 << " ";
+                }
+                cout << endl;
+            }
         }
 
         void printDistance() {
@@ -117,6 +134,8 @@ int main(int argc, char *argv[]) {
     G.printDistance();
 
     if(hasNegativeCycle) cout << endl << "This graph contains a negative cycle" << endl;
+
+    //G.printGraph();
 
     fin.close();
     fout.close();
