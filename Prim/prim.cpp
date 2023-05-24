@@ -39,34 +39,35 @@ class Graph {
 
             pq queue;
 
-            int currentNode = initialNode;
-            weights[currentNode] = 0;
-            queue.emplace(weights[currentNode], currentNode);
+            weights[initialNode] = 0;
+            
+            queue.emplace(weights[initialNode], initialNode);
 
             while (!queue.empty()) {
-                currentNode = queue.top().second;
+                int currentNode = queue.top().second;
                 queue.pop();
 
-                if(inMST[currentNode]) continue;
-
+                if(inMST[currentNode] == true) continue;
+                
                 inMST[currentNode] = true;
 
-                if (parent[currentNode] != -1) minimum_spanning_tree.emplace_back(parent[currentNode], currentNode);
+                for (PairInt adjacentPair : adjacentList[currentNode]) {
+                    int adjacentVertex = adjacentPair.first;
+                    int adjacentWeight = adjacentPair.second;
 
-                for (PairInt node : adjacentList[currentNode]) {
-                    int vertex = node.first;
-                    int weight = node.second;
-
-                    if (!inMST[vertex] && weight < weights[vertex]) {
-                        weights[vertex] = weight;
-                        parent[vertex] = currentNode;
-                        queue.emplace(weights[vertex], vertex);
+                    if (!inMST[adjacentVertex] && weights[adjacentVertex] > adjacentWeight) {
+                        weights[adjacentVertex] = adjacentWeight;
+                        parent[adjacentVertex] = currentNode;
+                        queue.emplace(adjacentWeight, adjacentVertex);
                     }
                 }
             }
 
+            // Build minimum spanning tree from parent array
             for (int i = 0; i < V; i++) {
                 total_weight += weights[i];
+                if (parent[i] == -1) continue;
+                minimum_spanning_tree.emplace_back(parent[i], i);
             }
 
             return total_weight;
@@ -77,7 +78,6 @@ class Graph {
                 cout << adjacentPair.first + 1 << " " << adjacentPair.second + 1 << endl;
             }
         }
-    
 };
 
 int main(int argc, char *argv[]) {
@@ -110,6 +110,8 @@ int main(int argc, char *argv[]) {
 
     if(print_tree_flag){
         G.print_tree();
+    } else {
+        cout << mst_weight << endl;
     }
 
     if(fout.is_open()){
@@ -123,5 +125,5 @@ int main(int argc, char *argv[]) {
         fin.close();
     }
 
-    return mst_weight;
+    return 0;
 }
