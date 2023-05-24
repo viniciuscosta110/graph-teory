@@ -32,9 +32,11 @@ class Graph {
 
         int primMST(int initialNode = 0) {
             int total_weight = 0;
+            
             vector<int> weights(V, INF);
             vector<int> parent(V, -1);
             vector<bool> inMST(V, false);
+
             pq queue;
 
             int currentNode = initialNode;
@@ -45,15 +47,11 @@ class Graph {
                 currentNode = queue.top().second;
                 queue.pop();
 
-                if (inMST[currentNode]) continue;
+                if(inMST[currentNode]) continue;
 
                 inMST[currentNode] = true;
 
-                if (parent[currentNode] != -1) {
-                    minimum_spanning_tree.emplace_back(parent[currentNode], currentNode);
-                }
-                
-                total_weight += weights[currentNode];
+                if (parent[currentNode] != -1) minimum_spanning_tree.emplace_back(parent[currentNode], currentNode);
 
                 for (PairInt node : adjacentList[currentNode]) {
                     int vertex = node.first;
@@ -65,6 +63,10 @@ class Graph {
                         queue.emplace(weights[vertex], vertex);
                     }
                 }
+            }
+
+            for (int i = 0; i < V; i++) {
+                total_weight += weights[i];
             }
 
             return total_weight;
