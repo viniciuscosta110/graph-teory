@@ -1,7 +1,7 @@
 CC = g++
 CFLAGS = -std=c++11 -Wall
 
-TARGET = bellman_ford
+TARGET = bellman_ford.bin
 SRC = bellman_ford.cpp
 
 $(TARGET): $(SRC)
@@ -9,7 +9,7 @@ $(TARGET): $(SRC)
 
 .PHONY: clean
 clean:
-	del /Q *.o *.d bellman_ford.exe
+	del /Q *.o *.d bellman_ford.bin
 
 %:
 	@:

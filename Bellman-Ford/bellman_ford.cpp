@@ -23,18 +23,11 @@ class Graph {
         vector<int> path;
         vector <int> distance;
         vector<VectorPairInt> adjacentList;
+
         Graph(int V) : V{V}, path(V), distance(V, INF), adjacentList(V) {}
 
         bool BellmanFord(int initial_vertex = 0) {
-            distance[initial_vertex] = 0;
-
-            for (int i = 0; i < V-1; i++) {
-                if(i == initial_vertex) {
-                    path[i] = initial_vertex;
-                    continue;
-                }
-                path[i] = -2;
-            }
+            distance[initial_vertex] = 0;            
 
             for (int i = 0; i < V-1; i++) {
                 bool changed = false;
@@ -54,33 +47,22 @@ class Graph {
                 if (!changed) break;
             }
 
-            for (int u = 0; u < V; u++) {
-                for (PairInt node : adjacentList[u]) {
-                    int v = node.first;
-                    int w = node.second;
-
-                    if (distance[u] != INF && distance[u] + w < distance[v]) {
-                        return true;
-                    }
-                }
-            }
-
             return false;
         }
 
         void printBestPath() {
-            cout << "Best path: ";
+            // In the formate vertex:distance
             for (int i = 0; i < V; i++) {
-                cout << i+1 << ": " << path[i]+1 << "\n";
+                if (distance[i] == INF) continue;
+                cout << i+1 << ":";
+                cout << distance[i] << " ";
             }
-
-            cout << endl << endl;
         }
 
         void printGraph() {
             cout << "Graph: " << endl;
             for (int i = 0; i < V; i++) {
-                cout << i+1 << ": ";
+                cout << i+1 << ":";
                 for (PairInt node : adjacentList[i]) {
                     cout << node.first+1 << " ";
                 }
@@ -121,8 +103,7 @@ int main(int argc, char *argv[]) {
 
     for (int i = 0; i < E; i++) {
         int u, v, w;
-        if(input_file != "") fin >> u >> v >> w;
-        else cin >> u >> v >> w;
+        fin >> u >> v >> w;
         G.addEdge(u, v, w);
     }
 
@@ -152,6 +133,7 @@ int main(int argc, char *argv[]) {
     if(hasNegativeCycle) cout << endl << "This graph contains a negative cycle" << endl;
 
     //G.printGraph();
+    G.printBestPath();
 
     fin.close();
     fout.close();
