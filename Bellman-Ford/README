@@ -1,10 +1,11 @@
-# Prim Algorithm
+# Bellman-Ford Algorithm
 
 ## Description
 - Instances of the problem are in the folder [instances](./instances)
-- Minimum spanning tree solutions are in the folder [sp](./sp)
+- Folder [output](./outputs/) where the output files will be saved 
 
 ## How to use
+
 To execute the program, compile the binaries. If needed, update the file names at the beginning of the script [Bat1.sh](./Bat1.sh).
 
 ```bash
@@ -18,12 +19,12 @@ $ ./Bat1.sh
 
 If you want to execute the program with a single instance, run the following command:
 ```bash
-$ ./kruskal.bin -f <instance_file>
+$ ./bellman_ford.bin -f <instance_file>
 ```
 
 You can write -h to see the help message:
 ```bash
-$ ./kruskal.bin -h
+$ ./bellman_ford.bin -h
 ```
 
 ## Input file format

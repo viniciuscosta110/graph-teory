@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Binários
-dijkstra=./djikstra.bin
+dijkstra=./dijkstra.bin
 
 echo "Testando algoritmo de Dijkstra"
 for i in instances/*.mtx

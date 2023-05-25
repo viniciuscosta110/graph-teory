@@ -1,0 +1,11 @@
+# Directed Graph Instances Generator
+
+This program generates instances of directed graphs with a given number of nodes and edges. The graphs are generated randomly, but the user can specify the number of instances that will be generated.
+
+## How to use
+
+To execute the program, compile the binaries. If needed, update the file names at the beginning of the script.
+
+```bash
+$ python3 instances_generator.py <number_of_instances>
+```

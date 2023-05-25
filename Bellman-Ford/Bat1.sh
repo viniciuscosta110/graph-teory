@@ -2,7 +2,7 @@
 
 # Binários
 bellman_ford=./bellman_ford.bin
-
+echo -e "\n";
 echo "Testando algoritmo de Bellman-Ford"
 for i in instances/*.mtx
 do
@@ -16,4 +16,5 @@ do
 	else
 		echo -e "\e[31mNão é um subgrafo\e[0m";
 	fi
+	echo -e "\n";
 done

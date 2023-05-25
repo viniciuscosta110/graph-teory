@@ -18,12 +18,12 @@ $ ./Bat1.sh
 
 If you want to execute the program with a single instance, run the following command:
 ```bash
-$ ./kruskal.bin -f <instance_file>
+$ ./dijkstra.bin -f <instance_file>
 ```
 
 You can write -h to see the help message:
 ```bash
-$ ./kruskal.bin -h
+$ ./dijkstra.bin -h
 ```
 
 ## Input file format
